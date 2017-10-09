@@ -54,7 +54,9 @@ public class OutputFormatter {
         removeNodesWithNegativeScores(topNode);
         StringBuilder sb = new StringBuilder();
         append(topNode, sb, nodesToKeepCssSelector);
-        String str = SHelper.innerTrim(sb.toString());
+//        String str = SHelper.innerTrim(sb.toString());
+        // 就是SHelper.innerTrim剪掉了有用的段落
+        String str = sb.toString();
         if (str.length() > 100)
             return str;
 
@@ -106,6 +108,10 @@ public class OutputFormatter {
             }
 
             String text = node2Text(e);
+//            System.out.print("text.length(): ");
+//            System.out.println(text.length());
+//            System.out.print("SHelper.countLetters(text) * 2: ");
+//            System.out.println(SHelper.countLetters(text) * 2);
             if (text.isEmpty() || text.length() < minParagraphText || text.length() > SHelper.countLetters(text) * 2)
                 continue;
 
