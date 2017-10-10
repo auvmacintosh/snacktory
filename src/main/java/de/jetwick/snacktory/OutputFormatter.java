@@ -51,11 +51,11 @@ public class OutputFormatter {
      * takes an element and turns the P tags into \n\n
      */
     public String getFormattedText(Element topNode) {
-        removeNodesWithNegativeScores(topNode);
+    	//就是removeNodesWith...删除了有用的段落
+//        removeNodesWithNegativeScores(topNode);
         StringBuilder sb = new StringBuilder();
         append(topNode, sb, nodesToKeepCssSelector);
 //        String str = SHelper.innerTrim(sb.toString());
-        // 就是SHelper.innerTrim剪掉了有用的段落
         String str = sb.toString();
         if (str.length() > 100)
             return str;
@@ -112,7 +112,9 @@ public class OutputFormatter {
 //            System.out.println(text.length());
 //            System.out.print("SHelper.countLetters(text) * 2: ");
 //            System.out.println(SHelper.countLetters(text) * 2);
-            if (text.isEmpty() || text.length() < minParagraphText || text.length() > SHelper.countLetters(text) * 2)
+            //这里也去掉了有用的段落
+//            if (text.isEmpty() || text.length() < minParagraphText || text.length() > SHelper.countLetters(text) * 2)
+            if (text.isEmpty() || text.length() < 10 || text.length() > SHelper.countLetters(text) * 2)
                 continue;
 
             sb.append(text);
